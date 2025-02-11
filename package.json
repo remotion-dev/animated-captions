@@ -1,21 +1,24 @@
 {
-  "name": "ipt2",
+  "name": "animated-captions",
   "version": "1.0.0",
-  "description": "My Remotion video",
-  "repository": {},
+  "description": "A set of styles for animated captions, ideal for short-form videos",
+  "repository": "https://github.com/remotion-dev/animated-captions",
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@remotion/cli": "4.0.257",
+    "@remotion/captions": "4.0.260",
+    "@remotion/layout-utils": "4.0.260",
+    "@remotion/cli": "4.0.260",
+    "@remotion/install-whisper-cpp": "4.0.260",
+    "@remotion/google-fonts": "4.0.260",
     "react": "19.0.0",
     "react-dom": "19.0.0",
-    "remotion": "4.0.257",
-    "@remotion/tailwind-v4": "4.0.257"
+    "remotion": "4.0.260"
   },
   "devDependencies": {
-    "@remotion/eslint-config-flat": "4.0.257",
+    "@remotion/eslint-config-flat": "4.0.260",
     "@types/react": "19.0.0",
-    "@types/web": "0.0.166",
+    "@types/web": "0.0.202",
     "eslint": "9.14.0",
     "prettier": "3.3.3",
     "typescript": "5.5.4"
@@ -28,5 +31,6 @@
   },
   "sideEffects": [
     "*.css"
-  ]
+  ],
+  "packageManager": "pnpm@7.17.1+sha1.6e0cd7b9f2cbd93a7fe60121e328e5281a03c903"
 }

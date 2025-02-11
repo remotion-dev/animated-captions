@@ -1,4 +1,3 @@
-import "./index.css";
 import { Composition } from "remotion";
 import { MyComposition } from "./Composition";
 
@@ -6,12 +5,13 @@ export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
+        width={1000}
+        height={1000}
         id="MyComp"
+        durationInFrames={120}
+        defaultProps={{}}
         component={MyComposition}
-        durationInFrames={60}
         fps={30}
-        width={1280}
-        height={720}
       />
     </>
   );
