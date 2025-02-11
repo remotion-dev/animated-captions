@@ -29,18 +29,20 @@ export const ColoredWords: React.FC<{
   const fontSize = Math.min(MAX_FONT_SIZE, fittedText.fontSize);
   const textStrokeWidth = fontSize / 7;
 
+  const style: React.CSSProperties = useMemo(() => {
+    return {
+      fontSize,
+      fontFamily,
+      fontWeight: FONT_WEIGHT,
+      color: "white",
+      WebkitTextStroke: "black",
+      WebkitTextStrokeWidth: textStrokeWidth,
+      paintOrder: "stroke fill",
+    };
+  }, [textStrokeWidth, fontSize]);
+
   return (
-    <div
-      style={{
-        fontSize,
-        fontFamily,
-        fontWeight: FONT_WEIGHT,
-        color: "white",
-        WebkitTextStroke: "black",
-        WebkitTextStrokeWidth: textStrokeWidth,
-        paintOrder: "stroke fill",
-      }}
-    >
+    <div style={style}>
       {page.tokens.map((token) => {
         const from = ((token.fromMs - page.startMs) / 1000) * fps;
         const end = ((token.toMs - page.startMs) / 1000) * fps;

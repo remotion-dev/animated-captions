@@ -14,6 +14,11 @@ const ANIMATION_LENGTH = 5;
 const HORIZONTAL_PADDING = 12;
 const VERTICAL_PADDING = 12;
 
+const tokenStyle: React.CSSProperties = {
+  whiteSpace: "pre",
+  position: "relative",
+};
+
 export const AnimatedBackground: React.FC<{
   page: TikTokPage;
 }> = ({ page }) => {
@@ -120,46 +125,44 @@ export const AnimatedBackground: React.FC<{
     [0.6, 1],
   );
 
+  const outerStyle: React.CSSProperties = useMemo(() => {
+    return {
+      fontSize,
+      fontFamily,
+      fontWeight: FONT_WEIGHT,
+      color: "white",
+      WebkitTextStroke: "black",
+      WebkitTextStrokeWidth: textStrokeWidth,
+      paintOrder: "stroke fill",
+      position: "relative",
+      width: totalWidth,
+    };
+  }, [totalWidth, textStrokeWidth, fontSize]);
+
+  const backgroundStyle: React.CSSProperties = useMemo(() => {
+    return {
+      height:
+        backgroundWidths[0].withoutWhitespace.height + VERTICAL_PADDING * 2,
+      backgroundColor: "#0B84F3",
+      width: width + HORIZONTAL_PADDING * 2,
+      display: "block",
+      position: "absolute",
+      left: offsetLeft,
+      marginLeft: -HORIZONTAL_PADDING,
+      paddingLeft: HORIZONTAL_PADDING,
+      paddingRight: HORIZONTAL_PADDING,
+      borderRadius: 10,
+      marginTop: -VERTICAL_PADDING,
+      scale: appear,
+    };
+  }, [appear, offsetLeft, width]);
+
   return (
-    <div
-      style={{
-        fontSize,
-        fontFamily,
-        fontWeight: FONT_WEIGHT,
-        color: "white",
-        WebkitTextStroke: "black",
-        WebkitTextStrokeWidth: textStrokeWidth,
-        paintOrder: "stroke fill",
-        position: "relative",
-        width: totalWidth,
-      }}
-    >
-      <div
-        style={{
-          height:
-            backgroundWidths[0].withoutWhitespace.height + VERTICAL_PADDING * 2,
-          backgroundColor: "#0B84F3",
-          width: width + HORIZONTAL_PADDING * 2,
-          display: "block",
-          position: "absolute",
-          left: offsetLeft,
-          marginLeft: -HORIZONTAL_PADDING,
-          paddingLeft: HORIZONTAL_PADDING,
-          paddingRight: HORIZONTAL_PADDING,
-          borderRadius: 10,
-          marginTop: -VERTICAL_PADDING,
-          scale: appear,
-        }}
-      ></div>
+    <div style={outerStyle}>
+      <div style={backgroundStyle}></div>
       {page.tokens.map((token) => {
         return (
-          <span
-            key={token.fromMs}
-            style={{
-              whiteSpace: "pre",
-              position: "relative",
-            }}
-          >
+          <span key={token.fromMs} style={tokenStyle}>
             {token.text}
           </span>
         );
