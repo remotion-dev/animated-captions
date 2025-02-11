@@ -1,5 +1,5 @@
 import { TikTokPage } from "@remotion/captions";
-import React from "react";
+import React, { useMemo } from "react";
 import { useCurrentFrame, useVideoConfig } from "remotion";
 import {
   FONT_WEIGHT,
@@ -7,7 +7,7 @@ import {
   MAX_CAPTION_WIDTH,
   MAX_FONT_SIZE,
   TEXT_TRANSFORM,
-} from "./config";
+} from "../config";
 import { fitText } from "@remotion/layout-utils";
 
 export const ColoredWords: React.FC<{
@@ -16,13 +16,15 @@ export const ColoredWords: React.FC<{
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame();
 
-  const fittedText = fitText({
-    fontFamily,
-    text: page.text,
-    withinWidth: MAX_CAPTION_WIDTH,
-    fontWeight: FONT_WEIGHT,
-    textTransform: TEXT_TRANSFORM,
-  });
+  const fittedText = useMemo(() => {
+    return fitText({
+      fontFamily,
+      text: page.text,
+      withinWidth: MAX_CAPTION_WIDTH,
+      fontWeight: FONT_WEIGHT,
+      textTransform: TEXT_TRANSFORM,
+    });
+  }, [page]);
 
   const fontSize = Math.min(MAX_FONT_SIZE, fittedText.fontSize);
   const textStrokeWidth = fontSize / 7;

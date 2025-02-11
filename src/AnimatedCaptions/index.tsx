@@ -6,7 +6,7 @@ import {
 import { AbsoluteFill, Sequence, useVideoConfig } from "remotion";
 import { WaitForFonts } from "./WaitForFonts";
 import React, { useMemo } from "react";
-import { ColoredWords } from "./ColoredWords";
+import { ColoredWords } from "./styles/ColoredWords";
 import { COMBINE_TOKENS_WITHIN_MILLISECONDS } from "./config";
 
 const style: React.CSSProperties = {
@@ -42,7 +42,7 @@ const Inner: React.FC<{
             durationInFrames={duration}
             from={start}
           >
-            <ColoredWords page={page} />
+            <PageComponent page={page} />
           </Sequence>
         );
       })}
