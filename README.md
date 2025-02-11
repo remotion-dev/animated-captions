@@ -1,54 +1,53 @@
-# Remotion video
+# Animated caption styles
 
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.gif">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
+These animated caption styles are ideal if you want to caption your short-form videos.
 
-Welcome to your Remotion project!
+The styles can easily be copied into your Remotion project and work with any captions that have been converted into the [`@remotion/captions`](https://www.remotion.dev/docs/captions/caption) format.
 
-## Commands
+There are no other dependencies and the styles can be used individually and be easily customized.
 
-**Install Dependencies**
+3 styles are included:
 
-```console
-npm i
+- Colored words: Paginated captions with color highlights for the active word.  
+- Scaling words: Same as colored words, but each active word scales up to add more pop.
+- Animated background: A rounded rectangle animates behind the words and jumps from word to word using a spring animation.
+
+All styles will automatically shrink the text if it does not fit inside the desired width.  
+
+Any Google Font can be used, but not all display stroked text properly.
+
+## Example usage
+
+Copy the `src/AnimatedCaptions` folder into your project.
+
+```tsx 
+import { AnimatedCaptions } from "./AnimatedCaptions";
+import { AnimatedBackground } from "./AnimatedCaptions/styles/AnimatedBackground";
+import { createTikTokStyleCaptions } from "@remotion/captions";
+
+// ...
+
+const {pages} = createTikTokStyleCaptions({ /* ... */})
+
+return <AnimatedCaptions PageComponent={AnimatedBackground} pages={pages} />
 ```
 
-**Start Preview**
+See the documentation for [`createTikTokStyleCaptions()`](https://www.remotion.dev/docs/captions/create-tiktok-style-captions) for an example of how to generate captions.
 
-```console
-npm run dev
+## Playground
+
+Run
+
+```sh
+npx remotion studio
 ```
 
-**Render video**
-
-```console
-npx remotion render
-```
-
-**Upgrade Remotion**
-
-```console
-npx remotion upgrade
-```
-
-## Docs
-
-Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
-
-## Help
-
-We provide help on our [Discord server](https://discord.gg/6VzzNDwUwV).
-
-## Issues
-
-Found an issue with Remotion? [File an issue here](https://github.com/remotion-dev/remotion/issues/new).
+to see the example playground.
 
 ## License
 
-Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+Notice that for some entities a company license is needed. Read [the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+
+You may only use these components if you bought them on [remotion.pro](https://www.remotion.pro).
+
+It is forbidden to redistribute the source code of this project.
