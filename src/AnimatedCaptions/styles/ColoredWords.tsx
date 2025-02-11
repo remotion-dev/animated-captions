@@ -51,6 +51,7 @@ export const ColoredWords: React.FC<{
 
         return (
           <span
+            key={token.fromMs}
             style={{
               color: active ? "#18ff0e" : "white",
               whiteSpace: "pre",
