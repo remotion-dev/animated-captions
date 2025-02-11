@@ -6,7 +6,6 @@ import {
 import { AbsoluteFill, Sequence, useVideoConfig } from "remotion";
 import { WaitForFonts } from "./WaitForFonts";
 import React, { useMemo } from "react";
-import { ColoredWords } from "./styles/ColoredWords";
 import { COMBINE_TOKENS_WITHIN_MILLISECONDS } from "./config";
 
 const style: React.CSSProperties = {
@@ -26,7 +25,7 @@ const Inner: React.FC<{
   const { fps } = useVideoConfig();
 
   return (
-    <AbsoluteFill style={style}>
+    <div>
       {pages.map((page, i) => {
         const start = (page.startMs / 1000) * fps;
         const nextPage = pages[i + 1] ?? null;
@@ -46,14 +45,15 @@ const Inner: React.FC<{
           </Sequence>
         );
       })}
-    </AbsoluteFill>
+    </div>
   );
 };
 
 export const AnimatedCaptions: React.FC<{
   captions: Caption[];
   PageComponent: PageComponent;
-}> = ({ captions, PageComponent }) => {
+  name: string;
+}> = ({ captions, PageComponent, name }) => {
   const { pages } = useMemo(() => {
     return createTikTokStyleCaptions({
       captions,
@@ -62,8 +62,25 @@ export const AnimatedCaptions: React.FC<{
   }, [captions]);
 
   return (
-    <WaitForFonts>
-      <Inner PageComponent={PageComponent} pages={pages} />
-    </WaitForFonts>
+    <AbsoluteFill
+      style={{
+        ...style,
+        backgroundColor: "#eee",
+      }}
+    >
+      <WaitForFonts>
+        <Inner PageComponent={PageComponent} pages={pages} />
+      </WaitForFonts>
+      <div
+        style={{
+          fontFamily: "sans-serif",
+          fontSize: 40,
+          marginTop: 350,
+          marginBottom: -350,
+        }}
+      >
+        {name}
+      </div>
+    </AbsoluteFill>
   );
 };

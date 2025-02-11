@@ -6,13 +6,18 @@ import { AnimatedBackground } from "./AnimatedCaptions/styles/AnimatedBackground
 
 export const ColoredWordsDemo: React.FC = () => {
   return (
-    <AnimatedCaptions PageComponent={ColoredWords} captions={sampleCaptions} />
+    <AnimatedCaptions
+      name="Colored Words Style"
+      PageComponent={ColoredWords}
+      captions={sampleCaptions}
+    />
   );
 };
 
 export const AnimatedBackgroundDemo: React.FC = () => {
   return (
     <AnimatedCaptions
+      name="Animated Background Style"
       PageComponent={AnimatedBackground}
       captions={sampleCaptions}
     />
