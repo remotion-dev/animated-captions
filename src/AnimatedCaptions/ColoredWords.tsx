@@ -10,10 +10,9 @@ import {
 } from "./config";
 import { fitText } from "@remotion/layout-utils";
 
-export const Page: React.FC<{
+export const ColoredWords: React.FC<{
   page: TikTokPage;
-  startMs: number;
-}> = ({ page, startMs }) => {
+}> = ({ page }) => {
   const { fps } = useVideoConfig();
   const frame = useCurrentFrame();
 
@@ -41,8 +40,8 @@ export const Page: React.FC<{
       }}
     >
       {page.tokens.map((token) => {
-        const from = ((token.fromMs - startMs) / 1000) * fps;
-        const end = ((token.toMs - startMs) / 1000) * fps;
+        const from = ((token.fromMs - page.startMs) / 1000) * fps;
+        const end = ((token.toMs - page.startMs) / 1000) * fps;
 
         const active = frame >= from && frame < end;
 

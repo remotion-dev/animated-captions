@@ -6,7 +6,7 @@ import {
 import { AbsoluteFill, Sequence, useVideoConfig } from "remotion";
 import { WaitForFonts } from "./WaitForFonts";
 import React, { useMemo } from "react";
-import { Page } from "./Page";
+import { ColoredWords } from "./ColoredWords";
 import { COMBINE_TOKENS_WITHIN_MILLISECONDS } from "./config";
 
 const style: React.CSSProperties = {
@@ -15,9 +15,14 @@ const style: React.CSSProperties = {
   alignItems: "center",
 };
 
+export type PageComponent = React.FC<{
+  page: TikTokPage;
+}>;
+
 const Inner: React.FC<{
   pages: TikTokPage[];
-}> = ({ pages }) => {
+  PageComponent: PageComponent;
+}> = ({ pages, PageComponent }) => {
   const { fps } = useVideoConfig();
 
   return (
@@ -37,7 +42,7 @@ const Inner: React.FC<{
             durationInFrames={duration}
             from={start}
           >
-            <Page startMs={page.startMs} page={page} />
+            <ColoredWords page={page} />
           </Sequence>
         );
       })}
@@ -47,7 +52,8 @@ const Inner: React.FC<{
 
 export const AnimatedCaptions: React.FC<{
   captions: Caption[];
-}> = ({ captions }) => {
+  PageComponent: PageComponent;
+}> = ({ captions, PageComponent }) => {
   const { pages } = useMemo(() => {
     return createTikTokStyleCaptions({
       captions,
@@ -57,7 +63,7 @@ export const AnimatedCaptions: React.FC<{
 
   return (
     <WaitForFonts>
-      <Inner pages={pages} />
+      <Inner PageComponent={PageComponent} pages={pages} />
     </WaitForFonts>
   );
 };
