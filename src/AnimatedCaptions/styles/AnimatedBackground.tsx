@@ -102,11 +102,14 @@ export const AnimatedBackground: React.FC<{
     return sum + (wordIndex % 1) * widthToAdd;
   }, 0);
 
-  const width = interpolate(
-    wordIndex,
-    new Array(backgroundWidths.length).fill(1).map((_, i) => i),
-    backgroundWidths.map((w) => w.withoutWhitespace.width),
-  );
+  const width =
+    backgroundWidths.length === 1
+      ? backgroundWidths[0].withoutWhitespace.width
+      : interpolate(
+          wordIndex,
+          new Array(backgroundWidths.length).fill(1).map((_, i) => i),
+          backgroundWidths.map((w) => w.withoutWhitespace.width),
+        );
 
   const totalWidth = backgroundWidths.reduce((sum, token) => {
     return sum + token.withWhitespace.width;
