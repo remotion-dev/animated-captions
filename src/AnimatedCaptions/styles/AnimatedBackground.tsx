@@ -138,7 +138,7 @@ export const AnimatedBackground: React.FC<{
       WebkitTextStrokeWidth: textStrokeWidth,
       paintOrder: "stroke fill",
       position: "relative",
-      width: totalWidth,
+      width: Math.ceil(totalWidth),
     };
   }, [totalWidth, textStrokeWidth, fontSize]);
 
