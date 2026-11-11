@@ -48,6 +48,6 @@ to see the example playground.
 
 Notice that for some entities a company license is needed. Read [the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
 
-You may only use these components if you bought them on [remotion.pro](https://www.remotion.pro).
+You may only use these components if you bought them on [the Remotion Store](https://www.remotion.dev/store/animated-captions).
 
 It is forbidden to redistribute the source code of this project.
